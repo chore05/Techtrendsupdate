@@ -8,45 +8,59 @@ docker run -d -p 7111:3111 techtrends
 ## get the container id
 docker ps
 ## get the logs of this container id assigned to techtrends
-docker logs -f 618948cddcd6
+docker logs -f 4e24945d609e
 
 ## Logs from the container running the TechTrends application
-docker logs -f 618948cddcd6 
+docker logs -f 4e24945d609e 
 
- * Serving Flask app "app" (lazy loading)
+ * Serving Flask app 'app' (lazy loading)
  * Environment: production
    WARNING: This is a development server. Do not use it in a production deployment.
    Use a production WSGI server instead.
  * Debug mode: off
-INFO:werkzeug: * Running on http://0.0.0.0:3111/ (Press CTRL+C to quit)
-INFO:werkzeug:172.17.0.1 - - [21/Aug/2021 23:41:00] "GET / HTTP/1.1" 200 -
-INFO:werkzeug:172.17.0.1 - - [21/Aug/2021 23:41:00] "GET /static/css/main.css HTTP/1.1" 200 -
-INFO:werkzeug:172.17.0.1 - - [21/Aug/2021 23:41:01] "GET /favicon.ico HTTP/1.1" 404 -
-INFO:app:08/21/2021, 23:41:08 | Article "KubeCon + CloudNativeCon 2021" retrieved!
-INFO:werkzeug:172.17.0.1 - - [21/Aug/2021 23:41:08] "GET /2 HTTP/1.1" 200 -
-INFO:app:Metrics request successful
-INFO:werkzeug:172.17.0.1 - - [21/Aug/2021 23:41:16] "GET /metrics HTTP/1.1" 200 -
-INFO:werkzeug:172.17.0.1 - - [21/Aug/2021 23:45:11] "GET / HTTP/1.1" 200 -
-INFO:werkzeug:172.17.0.1 - - [21/Aug/2021 23:45:47] "GET / HTTP/1.1" 200 -
-INFO:app:08/21/2021, 23:45:56 | Article "2020 CNCF Annual Report" retrieved!
-INFO:werkzeug:172.17.0.1 - - [21/Aug/2021 23:45:56] "GET /1 HTTP/1.1" 200 -
-INFO:werkzeug:172.17.0.1 - - [21/Aug/2021 23:46:04] "GET /create HTTP/1.1" 200 -
-INFO:app:08/21/2021, 23:46:29 | New Article "New Article 2021" created
-INFO:werkzeug:172.17.0.1 - - [21/Aug/2021 23:46:29] "POST /create HTTP/1.1" 302 -
-INFO:werkzeug:172.17.0.1 - - [21/Aug/2021 23:46:29] "GET / HTTP/1.1" 200 -
-INFO:app:08/21/2021, 23:46:37 | Article "New Article 2021" retrieved!
-INFO:werkzeug:172.17.0.1 - - [21/Aug/2021 23:46:37] "GET /7 HTTP/1.1" 200 -
-INFO:app:Metrics request successful
-INFO:werkzeug:172.17.0.1 - - [21/Aug/2021 23:46:47] "GET /metrics HTTP/1.1" 200 -
-INFO:app:healthcheck: ok
-INFO:werkzeug:172.17.0.1 - - [21/Aug/2021 23:46:58] "GET /healthz HTTP/1.1" 200 -
-INFO:werkzeug:172.17.0.1 - - [21/Aug/2021 23:47:03] "GET / HTTP/1.1" 200 -
-INFO:app:08/21/2021, 23:49:51 | Article "30" does not exist
-INFO:werkzeug:172.17.0.1 - - [21/Aug/2021 23:49:51] "GET /30 HTTP/1.1" 404 -
-INFO:app:08/21/2021, 23:49:57 | Article "2020 CNCF Annual Report" retrieved!
-INFO:werkzeug:172.17.0.1 - - [21/Aug/2021 23:49:57] "GET /1 HTTP/1.1" 200 -
-INFO:werkzeug:172.17.0.1 - - [21/Aug/2021 23:57:29] "GET / HTTP/1.1" 200 -
-INFO:app:08/22/2021, 00:03:51 | "About Us" page retrieved
-INFO:werkzeug:172.17.0.1 - - [22/Aug/2021 00:03:51] "GET /about HTTP/1.1" 200 -
-INFO:app:08/22/2021, 00:04:15 | Article "Kubernetes v1.20 Release Notes" retrieved!
-INFO:werkzeug:172.17.0.1 - - [22/Aug/2021 00:04:15] "GET /3 HTTP/1.1" 200 -
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://172.17.0.2:3111/ (Press CTRL+C to quit)
+[2023-02-27 13:12:44,164] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/site-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.8/site-packages/flask/app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.8/site-packages/flask/app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.8/site-packages/flask/app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "app.py", line 30, in index
+    posts = connection.execute('SELECT * FROM posts').fetchall()
+sqlite3.OperationalError: no such table: posts
+172.17.0.1 - - [27/Feb/2023 13:12:44] "GET / HTTP/1.1" 500 -
+172.17.0.1 - - [27/Feb/2023 13:12:44] "GET /favicon.ico HTTP/1.1" 404 -
+[2023-02-27 13:15:42,264] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/site-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.8/site-packages/flask/app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.8/site-packages/flask/app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.8/site-packages/flask/app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "app.py", line 30, in index
+    posts = connection.execute('SELECT * FROM posts').fetchall()
+sqlite3.OperationalError: no such table: posts
+172.17.0.1 - - [27/Feb/2023 13:15:42] "GET / HTTP/1.1" 500 -
+[2023-02-27 13:21:13,362] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/site-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.8/site-packages/flask/app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.8/site-packages/flask/app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.8/site-packages/flask/app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "app.py", line 30, in index
+    posts = connection.execute('SELECT * FROM posts').fetchall()
+sqlite3.OperationalError: no such table: posts
+172.17.0.1 - - [27/Feb/2023 13:21:13] "GET / HTTP/1.1" 500 -
